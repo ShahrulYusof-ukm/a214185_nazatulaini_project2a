@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             // REPLACE this with your exact generated theme name from your ui.theme folder
-            A214185_nazatulaini_project2aTheme() { }Theme()  {
+            A214185_nazatulaini_project2aTheme() {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background

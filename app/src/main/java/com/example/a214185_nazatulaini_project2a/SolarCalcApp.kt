@@ -123,7 +123,7 @@ fun SolarProjectAppContent(
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun SolarProjectAppPreview() {
-    A214185_nazatulaini_lab05bTheme {
+    A214185_nazatulaini_project2aTheme() {
         SolarProjectApp()
     }
 }

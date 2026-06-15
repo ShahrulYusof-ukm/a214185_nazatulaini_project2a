@@ -14,7 +14,7 @@ val AppShapes = Shapes(
 )
 
 @Composable
-fun A214185_nazatulaini_lab05bTheme(
+fun A214185_nazatulaini_project2aTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
