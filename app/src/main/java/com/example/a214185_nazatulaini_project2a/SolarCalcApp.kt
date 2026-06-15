@@ -22,7 +22,9 @@ enum class SolarScreen(val title: String) {
     AddEntry("Add New Setup"),
     Result("Calculation Result"),
     History("Setup History"),
-    SdgInfo("About SDG 7")
+    SdgInfo("About SDG 7"),
+    SolarForecast("Live Solar Forecast"),      // Screen 6: Location + Retrofit API
+    CloudDashboard("Cloud Community Feed")    // Screen 7: Firebase Firestore Cloud
 }
 
 @Composable
@@ -53,7 +55,9 @@ fun SolarProjectApp(
                 HomeScreen(
                     onAddSetupClick = { navController.navigate(SolarScreen.AddEntry.name) },
                     onViewHistoryClick = { navController.navigate(SolarScreen.History.name) },
-                    onSdgInfoClick = { navController.navigate(SolarScreen.SdgInfo.name) }
+                    onSdgInfoClick = { navController.navigate(SolarScreen.SdgInfo.name) },
+                    onForecastClick = { navController.navigate(SolarScreen.SolarForecast.name) }, // Fixed: Parameter passed
+                    onCloudClick = { navController.navigate(SolarScreen.CloudDashboard.name) }    // Fixed: Parameter passed
                 )
             }
 
@@ -82,6 +86,16 @@ fun SolarProjectApp(
 
             composable(route = SolarScreen.SdgInfo.name) {
                 SdgInfoScreen()
+            }
+
+            // 🆕 SCREEN 6: SOLAR FORECAST (API + GPS)
+            composable(route = SolarScreen.SolarForecast.name) {
+                SolarForecastScreen()
+            }
+
+            // 🆕 SCREEN 7: CLOUD DASHBOARD (FIREBASE)
+            composable(route = SolarScreen.CloudDashboard.name) {
+                CloudDashboardScreen()
             }
         }
     }
@@ -123,7 +137,7 @@ fun SolarProjectAppContent(
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun SolarProjectAppPreview() {
-    A214185_nazatulaini_project2aTheme() {
+    A214185_nazatulaini_project2aTheme { // Fixed: Unnecessary parentheses removed
         SolarProjectApp()
     }
 }

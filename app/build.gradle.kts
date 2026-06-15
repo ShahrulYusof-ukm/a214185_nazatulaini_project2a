@@ -2,8 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
+    // ☁️ Use the direct ID notation (replace your alias line with this):
+    // id("com.google.gms.google-services")
 }
-
 android {
     namespace = "com.example.a214185_nazatulaini_project2a"
     compileSdk = 37
@@ -51,6 +52,14 @@ dependencies {
     implementation(libs.androidx.compose.material.icons.extended)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+    // 🌐 REST API: Retrofit Networking Components
+    implementation("com.squareup.retrofit2:retrofit:3.0.0")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0")
+    // 📡 HARDWARE SENSOR: Google Play Services Location API
+    implementation("com.google.android.gms:play-services-location:21.3.0")
+    // ☁ CLOUD INTEGRATION: Firebase Firestore
+    implementation("com.google.firebase:firebase-firestore-ktx:25.1.4")
     ksp(libs.androidx.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))

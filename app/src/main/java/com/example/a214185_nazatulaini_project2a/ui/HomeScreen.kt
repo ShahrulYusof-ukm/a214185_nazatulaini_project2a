@@ -7,6 +7,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,6 +23,8 @@ fun HomeScreen(
     onAddSetupClick: () -> Unit,
     onViewHistoryClick: () -> Unit,
     onSdgInfoClick: () -> Unit,
+    onForecastClick: () -> Unit, // New parameter for Screen 6
+    onCloudClick: () -> Unit,    // New parameter for Screen 7
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -87,6 +91,7 @@ fun HomeScreen(
 
         Spacer(modifier = Modifier.height(8.dp))
 
+        // Screen 2 Trigger
         Button(
             onClick = onAddSetupClick,
             modifier = Modifier
@@ -99,6 +104,7 @@ fun HomeScreen(
             Text("Add New Setup", fontSize = 16.sp)
         }
 
+        // Screen 4 Trigger
         FilledTonalButton(
             onClick = onViewHistoryClick,
             modifier = Modifier
@@ -111,9 +117,41 @@ fun HomeScreen(
             Text("View Setup History", fontSize = 16.sp)
         }
 
-        @Composable
-        fun Dummy() {}
+        // 🆕 Screen 6 Trigger: Solar Forecast (API + Location)
+        FilledTonalButton(
+            onClick = onForecastClick,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp),
+            shape = MaterialTheme.shapes.medium,
+            colors = ButtonDefaults.filledTonalButtonColors(
+                containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                contentColor = MaterialTheme.colorScheme.onSecondaryContainer
+            )
+        ) {
+            Icon(Icons.Default.Refresh, contentDescription = "Forecast")
+            Spacer(modifier = Modifier.width(8.dp))
+            Text("Live Solar Forecast (API)", fontSize = 16.sp)
+        }
 
+        // 🆕 Screen 7 Trigger: Cloud Dashboard (Firebase)
+        FilledTonalButton(
+            onClick = onCloudClick,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp),
+            shape = MaterialTheme.shapes.medium,
+            colors = ButtonDefaults.filledTonalButtonColors(
+                containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                contentColor = MaterialTheme.colorScheme.onTertiaryContainer
+            )
+        ) {
+            Icon(Icons.Default.Share, contentDescription = "Cloud")
+            Spacer(modifier = Modifier.width(8.dp))
+            Text("Cloud Community Feed (Firebase)", fontSize = 16.sp)
+        }
+
+        // Screen 5 Trigger
         OutlinedButton(
             onClick = onSdgInfoClick,
             modifier = Modifier
