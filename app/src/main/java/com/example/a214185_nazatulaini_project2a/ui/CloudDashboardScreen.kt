@@ -37,6 +37,7 @@ fun CloudDashboardScreen(
         try {
             FirebaseFirestore.getInstance()
         } catch (e: Exception) {
+            android.util.Log.e("FirebaseInit", "Firestore initialization failed", e)
             null
         }
     }
@@ -53,6 +54,7 @@ fun CloudDashboardScreen(
                 CloudSetupEntry("2", "Putrajaya Solar Plant Hub (Simulated)", 120, 642.0),
                 CloudSetupEntry("3", "UKM Engineering Lab Roof (Simulated)", 24, 110.5)
             )
+            Toast.makeText(context, "Using simulated data (Firebase not initialized)", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -72,9 +74,10 @@ fun CloudDashboardScreen(
                 cloudItems = fetchedList
                 isLoading = false
             }
-            .addOnFailureListener {
+            .addOnFailureListener { e ->
                 isLoading = false
-                Toast.makeText(context, "Fetch failed. Using local view container.", Toast.LENGTH_SHORT).show()
+                android.util.Log.e("FirestoreError", "Fetch failed", e)
+                Toast.makeText(context, "Fetch failed: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
             }
     }
 
@@ -106,9 +109,10 @@ fun CloudDashboardScreen(
                 Toast.makeText(context, "Successfully broadcasted to Cloud Feed!", Toast.LENGTH_SHORT).show()
                 fetchCloudData()
             }
-            .addOnFailureListener {
+            .addOnFailureListener { e ->
                 isUploading = false
-                Toast.makeText(context, "Network Timeout. Payload cached to system outbox.", Toast.LENGTH_SHORT).show()
+                android.util.Log.e("FirestoreError", "Upload failed", e)
+                Toast.makeText(context, "Upload failed: ${e.localizedMessage}", Toast.LENGTH_LONG).show()
             }
     }
 

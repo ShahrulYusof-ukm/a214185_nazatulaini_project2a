@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     // ☁️ Use the direct ID notation (replace your alias line with this):
-    // id("com.google.gms.google-services")
+    alias(libs.plugins.google.services)
 }
 android {
     namespace = "com.example.a214185_nazatulaini_project2a"
@@ -59,7 +59,9 @@ dependencies {
     // 📡 HARDWARE SENSOR: Google Play Services Location API
     implementation("com.google.android.gms:play-services-location:21.3.0")
     // ☁ CLOUD INTEGRATION: Firebase Firestore
-    implementation("com.google.firebase:firebase-firestore-ktx:25.1.4")
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.analytics)
     ksp(libs.androidx.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
